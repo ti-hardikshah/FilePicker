@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <!-- DropBox chooser Javascript with data-app-key -->
+    <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="o6on5kyogv098cb"></script>
+   
+    <!-- Simple CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <div class="container my-5">
+        <h2>Dropbox File Selection </h2>
+        <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">Chooser button:</th>
+                <td>
+                    <div id="dropbox-container"></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-center mt-5">
+            <button  id="done-button" type="button" class="btn btn-primary" onclick="CloseWebView()" disabled>Done</button>
+          </div>
+    </div>
+
+    <!-- DropBox Picker custom js -->
+    <script type="text/javascript" src="/js/dropboxpicker.js" id="dropboxpicker"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+h1 {
+  font-family: 'open-sans'; 
+}
+#img_list {
+  background-color: #ccc;
+  min-width: 100%;
+  min-height: 50px;
+}
+#img_list li {
+	list-style-type: none;
+	display: inline;
+}
+#img_list img {
+	max-width: 200px;
+}
