@@ -113,9 +113,9 @@ function pickerCallback(data) {
 function UpdatePickerButton(multiselectType, extensionsType) {
 
     isMultipleSelection = multiselectType;
-    dataType = JSON.stringify(extensionsType.data_Type);
+    dataType = extensionsType.data_Type;
 
-    alert(isMultipleSelection +"  "+dataType);
+   // alert(isMultipleSelection +"  "+dataType);
 
     let drivePicker = document.getElementById("drivepicker-button");
     drivePicker.disabled = false;
