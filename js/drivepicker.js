@@ -112,10 +112,8 @@ function pickerCallback(data) {
 
 function UpdatePickerButton(multiselectType, extensionsType) {
 
-    alert(extensionsType.data_Type +"  "+multiselectType);
-
     isMultipleSelection = multiselectType;
-    dataType = extensionsType.data_Type;
+    dataType = JSON.stringify(extensionsType.data_Type);
 
     alert(isMultipleSelection +"  "+dataType);
 
