@@ -113,8 +113,8 @@ function pickerCallback(data) {
 
 function UpdatePickerButton(multiselectType, extensionsType) {
 
-    isMultipleSelection = multiselectType;
-    dataType = extensionsType.data_Type;
+    isMultipleSelection = false;
+    dataType = "video/mp4,video/mov";//extensionsType.data_Type;
 
     alert(isMultipleSelection);
     alert(dataType);
