@@ -122,6 +122,7 @@ function UpdatePickerButton(multiselectType, extensionsType) {
 }
 
 
+
 function CloseWebView() {
     window.location.href = "uniwebview://selection-over?data=" + unityJson;
 }
