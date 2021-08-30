@@ -119,8 +119,8 @@ function UpdatePickerButton(multiselectType, extensionsType) {
     alert(isMultipleSelection);
     alert(dataType);
 
-   // let drivePicker = document.getElementById("drivepicker-button");
-   // drivePicker.disabled = false;
+   let drivePicker = document.getElementById("drivepicker-button");
+   drivePicker.disabled = false;
     return dataType;
 }
 
