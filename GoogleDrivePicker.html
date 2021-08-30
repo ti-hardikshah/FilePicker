@@ -6,6 +6,9 @@
 
     <script type="text/javascript">
 
+      let isMultipleSelection = false;
+      let dataType = "image/png,image/jpeg,image/jpg";
+
     // The Browser API key obtained from the Google API Console.
     // Replace with your own Browser API key, or your own key.
     var developerKey = 'AIzaSyBFNVLq0DHG7NkgrGyeSmpG8PqjBT7ba50';
@@ -55,10 +58,10 @@
     function createPicker() {
       if (pickerApiLoaded && oauthToken) {
         var view = new google.picker.View(google.picker.ViewId.DOCS);
-        view.setMimeTypes("image/png,image/jpeg,image/jpg");
+        view.setMimeTypes(dataType);
         var picker = new google.picker.PickerBuilder()
             .enableFeature(google.picker.Feature.NAV_HIDDEN)
-            .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
+            .disableFeature(google.picker.Feature.MULTISELECT_ENABLED)
             .setAppId(appId)
             .setOAuthToken(oauthToken)
             .addView(view)
