@@ -7,7 +7,7 @@
     <script type="text/javascript">
 
       let isMultipleSelection = false;
-      let dataType = "image/png,image/jpeg,image/jpg";
+      let dataType = "video/mp4,video/mov"; //"image/png,image/jpeg,image/jpg";
 
     // The Browser API key obtained from the Google API Console.
     // Replace with your own Browser API key, or your own key.
@@ -59,7 +59,10 @@
       if (pickerApiLoaded && oauthToken) {
         var view = new google.picker.View(google.picker.ViewId.DOCS);
         view.setMimeTypes(dataType);
-        var picker = new google.picker.PickerBuilder()
+       
+        if (isMultipleSelection) 
+          {
+            var picker = new google.picker.PickerBuilder()
             .enableFeature(google.picker.Feature.NAV_HIDDEN)
             .disableFeature(google.picker.Feature.MULTISELECT_ENABLED)
             .setAppId(appId)
@@ -69,7 +72,23 @@
             .setDeveloperKey(developerKey)
             .setCallback(pickerCallback)
             .build();
+              
+          } else{
+            var picker = new google.picker.PickerBuilder()
+            .enableFeature(google.picker.Feature.NAV_HIDDEN)
+            .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
+            .setAppId(appId)
+            .setOAuthToken(oauthToken)
+            .addView(view)
+            .addView(new google.picker.DocsUploadView())
+            .setDeveloperKey(developerKey)
+            .setCallback(pickerCallback)
+            .build();
+          }
+        
          picker.setVisible(true);
+
+
       }
     }
 
