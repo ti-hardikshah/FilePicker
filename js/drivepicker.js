@@ -65,6 +65,7 @@ function handleAuthResult(authResult) {
 function createPicker() {
     if (pickerApiLoaded && oauthToken) {
         var view = new google.picker.View(google.picker.ViewId.DOCS);
+        alert("Before set view : -"+dataType);
         view.setMimeTypes(dataType);
 
         if (isMultipleSelection) {
@@ -114,8 +115,6 @@ function UpdatePickerButton(multiselectType, extensionsType) {
 
     isMultipleSelection = multiselectType;
     dataType = JSON.stringify(extensionsType.data_Type);
-
-   // alert(isMultipleSelection +"  "+dataType);
 
     let drivePicker = document.getElementById("drivepicker-button");
     drivePicker.disabled = false;
