@@ -87,7 +87,10 @@
           }
         
          picker.setVisible(true);
-
+   
+         //adjust picker size
+    $(".picker.shr-q-shr-r-shr-td.picker-dialog-content").addClass("google_picker_popup");
+    $(".picker.shr-q-shr-r.picker-dialog").addClass("google_picker_container");
 
       }
     }
@@ -104,18 +107,23 @@
     </script>
 
 <style>
-@media screen and (max-width: 991px) {
- .picker.modal-dialog {
-    max-width: 355px !important;
- }
+.google_picker_popup{
+  height: 100% !important;
+  width: 100% !important;
 
- .picker-dialog {
-    height: 80% !important;
-    width: auto !important;
- }
- .picker.modal-dialog-content.picker-dialog-content{
-     max-width: 355px !important;
- }
+}
+
+.google_picker_container{
+  height: 80% !important;
+  width: 80% !important;
+  max-height: 1024px;
+  min-width:250px;
+  max-width: 1039px;
+  top:0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  margin: auto;
 }
 </style>
 
