@@ -65,8 +65,8 @@ function handleAuthResult(authResult) {
 function createPicker() {
     if (pickerApiLoaded && oauthToken) {
         var view = new google.picker.View(google.picker.ViewId.DOCS);
-        alert("Before set view : -"+dataType);
-        view.setMimeTypes("image/png,image/jpeg,image/jpg");
+        // view.setMimeTypes("image/png,image/jpeg,image/jpg");
+        view.setMimeTypes(dataType);
 
         if (isMultipleSelection) {
             var picker = new google.picker.PickerBuilder()
@@ -102,12 +102,16 @@ function createPicker() {
 // A simple callback implementation.
 function pickerCallback(data) {
     //console.log("List of data : "+JSON.stringify(data))
-
-    data.docs.forEach(function(file) {
-        Data.links.push({
-            "url": file.url,
-        });
-    });
+     data.docs.forEach(function(file) {
+        var link = file.url;
+        l = link.replace(/\/file\/d\/(.+)\/(.+)/, "/uc?export=download&id=$1");
+        if(l !== link) {
+          console.log(l);
+            Data.links.push({
+              "url": l,
+          });
+        } 
+     });
 
 }
 
@@ -116,11 +120,11 @@ function UpdatePickerButton(multiselectType, extensionsType) {
     isMultipleSelection = false;
     dataType = extensionsType.data_Type;
 
-    alert(isMultipleSelection);
-    alert(dataType);
+    // alert(isMultipleSelection);
+    // alert(dataType);
 
-  // let drivePicker = document.getElementById("drivepicker-button");
-  // drivePicker.disabled = false;
+   let drivePicker = document.getElementById("drivepicker-button");
+   drivePicker.disabled = false;
    return dataType;
 }
 
