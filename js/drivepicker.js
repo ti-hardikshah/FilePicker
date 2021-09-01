@@ -66,7 +66,7 @@ function createPicker() {
     if (pickerApiLoaded && oauthToken) {
         var view = new google.picker.View(google.picker.ViewId.DOCS);
         alert("Before set view : -"+dataType);
-        view.setMimeTypes(dataType);
+        view.setMimeTypes("image/png,image/jpeg,image/jpg");
 
         if (isMultipleSelection) {
             var picker = new google.picker.PickerBuilder()
@@ -119,8 +119,8 @@ function UpdatePickerButton(multiselectType, extensionsType) {
     alert(isMultipleSelection);
     alert(dataType);
 
-   let drivePicker = document.getElementById("drivepicker-button");
-   drivePicker.disabled = false;
+  // let drivePicker = document.getElementById("drivepicker-button");
+  // drivePicker.disabled = false;
    return dataType;
 }
 
