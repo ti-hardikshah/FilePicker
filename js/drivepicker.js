@@ -114,14 +114,14 @@ function pickerCallback(data) {
 function UpdatePickerButton(multiselectType, extensionsType) {
 
     isMultipleSelection = false;
-    dataType = "video/mp4,video/mov";//extensionsType.data_Type;
+    dataType = extensionsType.data_Type;
 
     alert(isMultipleSelection);
     alert(dataType);
 
    let drivePicker = document.getElementById("drivepicker-button");
    drivePicker.disabled = false;
-    return dataType;
+   return dataType;
 }
 
 

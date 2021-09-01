@@ -5,137 +5,44 @@
     <title>Google Picker Example</title>
 
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
-
-    <script type="text/javascript">
-
-      let isMultipleSelection = false;
-      let dataType = "video/mp4,video/mov"; //"image/png,image/jpeg,image/jpg";
-
-    // The Browser API key obtained from the Google API Console.
-    // Replace with your own Browser API key, or your own key.
-    var developerKey = 'AIzaSyBFNVLq0DHG7NkgrGyeSmpG8PqjBT7ba50';
-
-    // The Client ID obtained from the Google API Console. Replace with your own Client ID.
-    var clientId = "194984934173-vn4v0ca9vbqgrtm024t7691dak88k9l1.apps.googleusercontent.com"
-
-    // Replace with your own project number from console.developers.google.com.
-    // See "Project number" under "IAM & Admin" > "Settings"
-    var appId = "psychic-trainer-324111";
-
-    // Scope to use to access user's Drive items.
-    var scope = ['https://www.googleapis.com/auth/drive.file'];
-
-    var pickerApiLoaded = false;
-    var oauthToken;
-
-    // Use the Google API Loader script to load the google.picker script.
-    function loadPicker() {
-      gapi.load('auth', {'callback': onAuthApiLoad});
-      gapi.load('picker', {'callback': onPickerApiLoad});
-    }
-
-    function onAuthApiLoad() {
-      window.gapi.auth.authorize(
-          {
-            'client_id': clientId,
-            'scope': scope,
-            'immediate': false
-          },
-          handleAuthResult);
-    }
-
-    function onPickerApiLoad() {
-      pickerApiLoaded = true;
-      createPicker();
-    }
-
-    function handleAuthResult(authResult) {
-      if (authResult && !authResult.error) {
-        oauthToken = authResult.access_token;
-        createPicker();
+    <style>
+      .picker {
+        height: 100% !important;
+        width: 100% !important;
+        top: 0 !important;
       }
-    }
-
-    // Create and render a Picker object for searching images.
-    function createPicker() {
-      if (pickerApiLoaded && oauthToken) {
-        var view = new google.picker.View(google.picker.ViewId.DOCS);
-        view.setMimeTypes(dataType);
-       
-        if (isMultipleSelection) 
-          {
-            var picker = new google.picker.PickerBuilder()
-            .enableFeature(google.picker.Feature.NAV_HIDDEN)
-            .disableFeature(google.picker.Feature.MULTISELECT_ENABLED)
-            .setAppId(appId)
-            .setOAuthToken(oauthToken)
-            .addView(view)
-            .addView(new google.picker.DocsUploadView())
-            .setDeveloperKey(developerKey)
-            .setCallback(pickerCallback)
-            .build();
-              
-          } else{
-            var picker = new google.picker.PickerBuilder()
-            .enableFeature(google.picker.Feature.NAV_HIDDEN)
-            .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
-            .setAppId(appId)
-            .setOAuthToken(oauthToken)
-            .addView(view)
-            .addView(new google.picker.DocsUploadView())
-            .setDeveloperKey(developerKey)
-            .setCallback(pickerCallback)
-            .build();
-          }
-        
-         picker.setVisible(true);
-         //adjust picker size
-
-         $(".picker.shr-q-shr-r-shr-td.picker-dialog-content").addClass("google_picker_popup");
-         $(".picker.shr-q-shr-r.picker-dialog").addClass("google_picker_container");
-
-      }
-    }
-
-    // A simple callback implementation.
-    function pickerCallback(data) {
-      console.log("List of data : "+JSON.stringify(data))
-     
-    /*  data.docs.forEach(function(file) {
-        console.log(file.url);
-      });*/
-     
-    }
-    </script>
-
-<style>
-.google_picker_popup{
-  height: 100% !important;
-  width: 100% !important;
-
-}
-
-.google_picker_container{
-  height: 80% !important;
-  width: 80% !important;
-  max-height: 1024px;
-  min-width:250px;
-  max-width: 1039px;
-  top:0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  margin: auto;
-}
-</style>
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+     <!-- Simple CSS -->
+     <link rel="stylesheet" href="css/style.css">
 
   </head>
   <body>
     <div id="result"></div>
-    <button onclick="showPickerDialog()">Show Picker Dialog</button>
+    <!-- <button onclick="showPickerDialog()" disabled>Show Picker Dialog</button> -->
+
+    <div class="container my-5">
+      <h2>Google Drive File Picker </h2>
+      <table class="table">
+          <tbody>
+            <tr>
+              <th scope="row" style="width: 30%;">Chooser button:</th>
+              <td style="align-content: flex-start;">
+                <button class="btn btn-primary" id="drivepicker-button" onclick="showPickerDialog()" disabled>Select File</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="text-center mt-5">
+          <button  id="done-button" type="button" class="btn btn-success" onclick="CloseWebView()" disabled>Done</button>
+        </div>
+  </div>
+
 
     <!-- The Google API Loader script. -->
     <script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+    <script type="text/javascript" src="js/drivepicker.js"></script>
+
     <script>
     function showPickerDialog(){
         loadPicker()
